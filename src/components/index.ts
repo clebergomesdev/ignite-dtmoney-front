@@ -3,3 +3,4 @@ export { default as Button } from "./button";
 export { default as Summary } from "./summary";
 export { default as TransactionsTable } from "./transactions-table";
 export { default as SearchForm } from "./search-form";
+export { default as NewTransactionModal } from './new-transaction-modal';
