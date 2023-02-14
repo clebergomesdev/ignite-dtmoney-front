@@ -1,29 +1,25 @@
 import React from 'react';
+import { Transaction } from '../../contexts';
+import { currencyFormatter, dateFormatter } from '../../utils/formatter';
 
 import { Container, PriceContainer } from './styles';
 
-const TransactionsTable: React.FC = () => {
+interface TransactionsTableProps {
+  transactions: Transaction[];
+}
+
+export const TransactionsTable: React.FC<TransactionsTableProps> = ({ transactions }) => {
   return (
     (<Container>
         <tbody>
-          <tr>
-            <td width='50%'>Desenvolvimento de site</td>
-            <td><PriceContainer variant='income'>R$ 10,00</PriceContainer></td>
-            <td>Venda</td>
-            <td>13/04/2023</td>
-          </tr>
-          <tr>
-            <td width='50%'>Hamburguer</td>
-            <td><PriceContainer variant='outcome'>R$ 10,00</PriceContainer></td>
-            <td>Alimentação</td>
-            <td>13/04/2023</td>
-          </tr>
-          <tr>
-            <td width='50%'>Desenvolvimento de site</td>
-            <td><PriceContainer variant='income'>R$ 10,00</PriceContainer></td>
-            <td>Venda</td>
-            <td>13/04/2023</td>
-          </tr>
+          {transactions.map((item) => (
+            <tr key={item.id}>
+              <td width='50%'>{item.description}</td>
+              <td><PriceContainer variant={item.type}>{currencyFormatter.format(item.amount)}</PriceContainer></td>
+              <td>{item.category}</td>
+              <td>{dateFormatter.format(new Date(item.createdAt))}</td>
+            </tr>
+          ))}
         </tbody> 
     </Container>)
   );

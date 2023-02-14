@@ -19,6 +19,11 @@ export const Container = styled.button<ContainerProps>`
   border-radius: 6px;
   cursor: pointer;
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   ${(props) =>
     props.variant === "outlined"
       ? css`
@@ -26,7 +31,7 @@ export const Container = styled.button<ContainerProps>`
           border: 1px solid ${(props) => props.theme["green-300"]};
           color: ${(props) => props.theme["green-300"]};
 
-          &:hover {
+          &:not(:disabled):hover {
             background: ${(props) => props.theme["green-500"]};
             border-color: ${(props) => props.theme["green-500"]};
             color: ${(props) => props.theme.white};
@@ -37,7 +42,7 @@ export const Container = styled.button<ContainerProps>`
           background: ${(_) => props.color === 'default' ? props.theme["gray-700"] : props.color === 'secondary' ? props.theme["red-500"] : props.theme["green-500"]};
           color: ${(props) => props.theme["white"]};
 
-          &:hover {
+          &:not(:disabled):hover {
             background-color: ${(_) => props.color === 'default' ? props.theme["gray-600"] :  props.color === 'secondary' ? props.theme["red-700"] : props.theme["green-700"]};
             transition: background-color 0.2s;
           }
